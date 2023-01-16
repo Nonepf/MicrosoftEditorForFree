@@ -1,0 +1,146 @@
+package net.mineren.MoreConstruction.Worldgen;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.BiomeBeach;
+import net.minecraft.world.biome.BiomeDesert;
+import net.minecraft.world.biome.BiomeForest;
+import net.minecraft.world.biome.BiomeHills;
+import net.minecraft.world.biome.BiomeJungle;
+import net.minecraft.world.biome.BiomeOcean;
+import net.minecraft.world.biome.BiomePlains;
+import net.minecraft.world.biome.BiomeProviderSingle;
+import net.minecraft.world.biome.BiomeSavanna;
+import net.minecraft.world.biome.BiomeStoneBeach;
+import net.minecraft.world.biome.BiomeTaiga;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.common.IWorldGenerator;
+import scala.actors.threadpool.Arrays;
+import scala.reflect.internal.Trees.If;
+
+public class ModWorldGenCustomStructure implements IWorldGenerator{
+	private int next = 1;
+	
+	public static final int NUMMAX = 15;
+	public static final int POSSIBILITY = 7;
+
+	@Override
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
+			IChunkProvider chunkePrvider) {
+		if (world.provider.getDimension() == 0) {
+			if (next == 1) {
+				this.generateStructure(1, new ModWorldGenStructure("structrue1"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomePlains.class);
+				this.generateStructure(1, new ModWorldGenStructure("structrue1"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeTaiga.class);
+			}
+			else if (next == 2) {
+				this.generateStructure(2, new ModWorldGenStructure("structrue2"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.SAND, BiomeDesert.class);
+				this.generateStructure(2, new ModWorldGenStructure("structrue2"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.STONE, BiomeHills.class);
+				this.generateStructure(2, new ModWorldGenStructure("structrue2"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.SAND, BiomeBeach.class);
+			}
+			else if (next == 3) {
+				this.generateStructure(3, new ModWorldGenStructure("structrue3"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomePlains.class);
+				this.generateStructure(3, new ModWorldGenStructure("structrue3"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeTaiga.class);
+			}
+			else if (next == 4) {
+				this.generateStructure(4, new ModWorldGenStructure("structrue4"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.SAND, BiomeDesert.class);
+				this.generateStructure(4, new ModWorldGenStructure("structrue4"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.STONE, BiomeHills.class);
+				this.generateStructure(4, new ModWorldGenStructure("structrue4"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.SAND, BiomeBeach.class);
+			}
+			else if (next == 5) {
+				this.generateStructure(5, new ModWorldGenStructure("structrue5"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomePlains.class);
+				this.generateStructure(5, new ModWorldGenStructure("structrue5"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeSavanna.class);
+				this.generateStructure(5, new ModWorldGenStructure("structrue5"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeForest.class);
+				this.generateStructure(5, new ModWorldGenStructure("structrue5"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeTaiga.class);
+			}
+			else if (next == 6) {
+				this.generateStructure(6, new ModWorldGenStructure("structrue6"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeTaiga.class);
+				this.generateStructure(6, new ModWorldGenStructure("structrue6"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeForest.class);
+				this.generateStructure(6, new ModWorldGenStructure("structrue6"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeJungle.class);
+			}
+			else if (next == 7) {
+				this.generateStructure(7, new ModWorldGenStructure("structrue7"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeForest.class);
+				this.generateStructure(7, new ModWorldGenStructure("structrue7"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeTaiga.class);
+				this.generateStructure(7, new ModWorldGenStructure("structrue7"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeJungle.class);
+			}
+			else if (next == 8) {
+				this.generateStructure(8, new ModWorldGenStructure("structrue8"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomePlains.class);
+				this.generateStructure(8, new ModWorldGenStructure("structrue8"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeForest.class);
+				this.generateStructure(8, new ModWorldGenStructure("structrue8"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeTaiga.class);
+				this.generateStructure(8, new ModWorldGenStructure("structrue8"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeJungle.class);
+			}
+			else if (next == 9) {
+				this.generateStructure(9, new ModWorldGenStructure("structrue9"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomePlains.class);
+				this.generateStructure(9, new ModWorldGenStructure("structrue9"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeForest.class);
+				this.generateStructure(9, new ModWorldGenStructure("structrue9"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeTaiga.class);
+				this.generateStructure(9, new ModWorldGenStructure("structrue9"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeJungle.class);
+			}
+			else if (next == 10) {
+				this.generateStructure(10, new ModWorldGenStructure("structrue10"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.STONE, BiomeStoneBeach.class);
+				this.generateStructure(10, new ModWorldGenStructure("structrue10"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.STONE, BiomeHillsme.class);
+				this.generateStructure(10, new ModWorldGenStructure("structrue10"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeTaiga.class);
+				this.generateStructure(10, new ModWorldGenStructure("structrue10"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeJungle.class);
+				this.generateStructure(10, new ModWorldGenStructure("structrue10"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomePlains.class);
+			}
+			else if (next == 11) {
+				this.generateStructure(11, new ModWorldGenStructure("structrue11"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.SAND, BiomeBeach.class);
+				this.generateStructure(11, new ModWorldGenStructure("structrue11"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.WATER, BiomeOcean.class);
+			}
+			else if (next == 12) {
+				this.generateStructure(12, new ModWorldGenStructure("structrue12"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.SAND, BiomeBeach.class);
+				this.generateStructure(12, new ModWorldGenStructure("structrue12"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.SAND, BiomeDesert.class);
+				this.generateStructure(12, new ModWorldGenStructure("structrue12"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.STONE, BiomeHills.class);
+			}
+			else if (next == 13) {
+				this.generateStructure(13, new ModWorldGenStructure("structrue13"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.SAND, BiomeBeach.class);
+				this.generateStructure(13, new ModWorldGenStructure("structrue13"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.SAND, BiomeDesert.class);
+			}
+			else if (next == 14) {
+				this.generateStructure(14, new ModWorldGenStructure("structrue14"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomePlains.class);
+				this.generateStructure(14, new ModWorldGenStructure("structrue14"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeSavanna.class);
+				this.generateStructure(14, new ModWorldGenStructure("structrue14"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeTaiga.class);
+			}
+			else if (next == 15) {
+				this.generateStructure(15, new ModWorldGenStructure("structrue15"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomePlains.class);
+				this.generateStructure(15, new ModWorldGenStructure("structrue15"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeSavanna.class);
+				this.generateStructure(15, new ModWorldGenStructure("structrue15"), world, random, chunkX, chunkZ, POSSIBILITY, Blocks.GRASS, BiomeTaiga.class);
+			}
+		}
+	}
+
+	private void generateStructure(int StructureType, WorldGenerator generator, World world, Random random, int chunkX, int chunkZ,
+			int chance, Block topBlock, Class<?>... classes) {
+		ArrayList<Class<?>> classesList = new ArrayList<Class<?>>(Arrays.asList(classes));
+		int x = (chunkX * 32) + random.nextInt(15) +8;
+		int z = (chunkZ * 32) + random.nextInt(15) +8;
+		int y = calculateGenerationHeight(world, x, z, topBlock);
+		BlockPos pos = new BlockPos(x, y, z);
+
+		Class<?> biome = world.provider.getBiomeForCoords(pos).getClass();
+		if (classesList.contains(biome)) {
+			if (random.nextInt(chance) == 0) {
+				generator.generate(world, random, pos);
+				if (StructureType >= NUMMAX) next = 1;
+				else next = StructureType + 1;
+				System.out.println("[>_<][RPF's report][succeed] next = " + next);
+			}
+		}
+	}
+	private static int calculateGenerationHeight(World world, int x, int z, Block topBlock) {
+		int y = world.getHeight();
+		boolean foundGround = false;
+
+		while (!foundGround && y-- >= 0) {
+			Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
+			foundGround = block == topBlock;
+		}
+		return y;
+	}
+}
